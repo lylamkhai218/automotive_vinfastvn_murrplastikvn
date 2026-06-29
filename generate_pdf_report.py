@@ -174,42 +174,42 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <td class="font-mono text-center">83692292</td>
                     <td><strong>SRF-70 sw conduit ring fixed 70</strong><div class="description-vn">(Vòng định vị / cố định ống luồn phi 70)</div></td>
                     <td class="text-center font-bold">3 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/10_83692292_SRF-70 sw conduit ring fixed 70_(Vòng định vị-cố định ống luồn phi 70)/SRF-70 sw conduit ring fixed 70_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/10_83692292_SRF-70 sw conduit ring fixed 70_(Vòng định vị-cố định ống luồn phi 70)/SRF-70 sw conduit ring fixed 70_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">2</td>
                     <td class="font-mono text-center">83691502</td>
                     <td><strong>SH 56/70-M system holder metal cap</strong><div class="description-vn">(Giá đỡ hệ thống phi 70 kèm nắp kim loại chịu tải)</div></td>
                     <td class="text-center font-bold">5 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/20_83691502_SH 56-70-M system holder metal cap_(Giá đỡ hệ thống kèm nắp kim loại)/(Giá đỡ hệ thống kèm nắp kim loại)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/20_83691502_SH 56-70-M system holder metal cap_(Giá đỡ hệ thống kèm nắp kim loại)/(Giá đỡ hệ thống kèm nắp kim loại)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">3</td>
                     <td class="font-mono text-center">83692800</td>
                     <td><strong>A-ZS-70 receptacle strain relief system</strong><div class="description-vn">(Hệ thống kẹp chặt cố định giảm lực căng cáp phi 70)</div></td>
                     <td class="text-center font-bold">4 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/40_83692800_A-ZS-70 receptacle strain relief system_(Hệ thống cố định và giảm lực căng cáp phi 70)/(Hệ thống cố định và giảm lực căng cáp phi 70)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/40_83692800_A-ZS-70 receptacle strain relief system_(Hệ thống cố định và giảm lực căng cáp phi 70)/(Hệ thống cố định và giảm lực căng cáp phi 70)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">4</td>
                     <td class="font-mono text-center">83980421</td>
                     <td><strong>SS 78 conduit clamp</strong><div class="description-vn">(Kẹp giữ định hướng ống luồn cáp cố định)</div></td>
                     <td class="text-center font-bold">4 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/60_83721026_SS 78 conduit clamp_(Kẹp giữ ống luồn cáp)/(Kẹp giữ ống luồn cáp).webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/60_83721026_SS 78 conduit clamp_(Kẹp giữ ống luồn cáp)/(Kẹp giữ ống luồn cáp).webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">5</td>
                     <td class="font-mono text-center">83693082</td>
                     <td><strong>R-Tec Liner 550mm EW/EWX 70-200N</strong><div class="description-vn">(Hệ thống hộp lò xo co rút kéo tự động hành trình 550mm)</div></td>
                     <td class="text-center font-bold">1 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/90_83693082_R-Tec Liner 550mm EW-EWX 70-200N_(Hệ thống ống kéo rút-bảo vệ đàn hồi 550mm)/(Hệ thống ống kéo rút_bảo vệ đàn hồi 550mm)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/90_83693082_R-Tec Liner 550mm EW-EWX 70-200N_(Hệ thống ống kéo rút-bảo vệ đàn hồi 550mm)/(Hệ thống ống kéo rút_bảo vệ đàn hồi 550mm)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">6</td>
                     <td class="font-mono text-center">83692480</td>
                     <td><strong>KEG/AK-70 sw, ball joint</strong><div class="description-vn">(Khớp nối cầu vạn năng xoay tự do phi 70, màu đen)</div></td>
                     <td class="text-center font-bold">1 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 7600 Murrplastik/110_83692480_KEG-AK-70 sw, ball joint_(Khớp nối vạn năng xoay góc phi 70, màu đen)/(Khớp nối vạn năng xoay góc phi 70, màu đen)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 7600 Murrplastik/110_83692480_KEG-AK-70 sw, ball joint_(Khớp nối vạn năng xoay góc phi 70, màu đen)/(Khớp nối vạn năng xoay góc phi 70, màu đen)_1.webp"></div></td>
                 </tr>
             </tbody>
         </table>
@@ -236,35 +236,35 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <td class="font-mono text-center">83693066</td>
                     <td><strong>R-Tec Liner 400mm EWX 48-140N</strong><div class="description-vn">(Hệ thống hộp lò xo co rút kéo tự động hành trình 400mm, lực kéo 140N)</div></td>
                     <td class="text-center font-bold">1 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 6700 Murrplastik/10_83693066_R-Tec Liner 400mm EWX 48-140N_(Hệ thống ống kéo rút đàn hồi hành trình 400mm, lực kéo 140N)/(Hệ thống ống kéo rút_bảo vệ đàn hồi 550mm)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 6700 Murrplastik/10_83693066_R-Tec Liner 400mm EWX 48-140N_(Hệ thống ống kéo rút đàn hồi hành trình 400mm, lực kéo 140N)/(Hệ thống ống kéo rút_bảo vệ đàn hồi 550mm)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">2</td>
                     <td class="font-mono text-center">83951610</td>
                     <td><strong>R-ZL/N1 36/48 strain relief, cable star</strong><div class="description-vn">(Tấm đệm cao su giảm ứng lực căng cáp dạng ngôi sao)</div></td>
                     <td class="text-center font-bold">4 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 6700 Murrplastik/60_83951610_R-ZL-N1 36-48 strain relief, cable star Elastomer blank_(Tấm cao su đàn hồi giảm lực căng cáp dạng ngôi sao)/(Hệ thống cố định và giảm lực căng cáp phi 70)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 6700 Murrplastik/60_83951610_R-ZL-N1 36-48 strain relief, cable star Elastomer blank_(Tấm cao su đàn hồi giảm lực căng cáp dạng ngôi sao)/(Hệ thống cố định và giảm lực căng cáp phi 70)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">3</td>
                     <td class="font-mono text-center">83692464</td>
                     <td><strong>KEG/K-M50 sw, ball joint for cable star</strong><div class="description-vn">(Khớp nối cầu vạn năng cố định dùng kèm tấm đệm giảm căng sao)</div></td>
                     <td class="text-center font-bold">4 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 6700 Murrplastik/70_83692464_KEG-K-M50 sw, Fixed end ball joint for cable star_(Khớp nối vạn năng cố định dùng kèm tấm đệm giảm căng)/(Khớp nối vạn năng xoay góc phi 70, màu đen)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 6700 Murrplastik/70_83692464_KEG-K-M50 sw, Fixed end ball joint for cable star_(Khớp nối vạn năng cố định dùng kèm tấm đệm giảm căng)/(Khớp nối vạn năng xoay góc phi 70, màu đen)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">4</td>
                     <td class="font-mono text-center">83691501</td>
                     <td><strong>SH M40/M50-M system holder metal cap</strong><div class="description-vn">(Giá đỡ hệ thống phi 48/50 kèm nắp khóa kim loại)</div></td>
                     <td class="text-center font-bold">5 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 6700 Murrplastik/80_83691501_SH M40-M50-M system holder metal cap_(Giá đỡ hệ thống phi 48-50 kèm nắp khóa kim loại)/(Giá đỡ hệ thống kèm nắp kim loại)_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 6700 Murrplastik/80_83691501_SH M40-M50-M system holder metal cap_(Giá đỡ hệ thống phi 48-50 kèm nắp khóa kim loại)/(Giá đỡ hệ thống kèm nắp kim loại)_1.webp"></div></td>
                 </tr>
                 <tr>
                     <td class="text-center font-bold">5</td>
                     <td class="font-mono text-center">83691664</td>
                     <td><strong>KMG/F-M50 sw, Fixed ball joint</strong><div class="description-vn">(Khớp nối vạn năng cố định định vị đầu ống phi M50)</div></td>
                     <td class="text-center font-bold">1 Cái</td>
-                    <td><div class="pdf-thumbs"><img src="../Ảnh phụ kiện ABB 6700 Murrplastik/90_83691664_KMG-F-M50 sw, Fixed bal joint_(Khớp nối vạn năng cố định hướng phi M50)/SRF-70 sw conduit ring fixed 70_1.webp"></div></td>
+                    <td><div class="pdf-thumbs"><img src="./Ảnh phụ kiện ABB 6700 Murrplastik/90_83691664_KMG-F-M50 sw, Fixed bal joint_(Khớp nối vạn năng cố định hướng phi M50)/SRF-70 sw conduit ring fixed 70_1.webp"></div></td>
                 </tr>
             </tbody>
         </table>
@@ -769,17 +769,16 @@ def start_server(root_dir):
     return httpd
 
 def main():
-    code_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.dirname(code_dir)
+    root_dir = os.path.dirname(os.path.abspath(__file__))
     
     # 1. Write pdf_report.html
-    html_path = os.path.join(code_dir, "pdf_report.html")
+    html_path = os.path.join(root_dir, "pdf_report.html")
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(HTML_CONTENT)
     print(f"Written {html_path}")
         
     # 2. Write pdf_report.css
-    css_path = os.path.join(code_dir, "pdf_report.css")
+    css_path = os.path.join(root_dir, "pdf_report.css")
     with open(css_path, "w", encoding="utf-8") as f:
         f.write(CSS_CONTENT)
     print(f"Written {css_path}")
@@ -795,7 +794,7 @@ def main():
             browser = p.chromium.launch()
             page = browser.new_page()
             
-            url = f"http://localhost:{PORT}/code/pdf_report.html"
+            url = f"http://localhost:{PORT}/pdf_report.html"
             print(f"Navigating to {url}...")
             page.goto(url, wait_until="networkidle")
             

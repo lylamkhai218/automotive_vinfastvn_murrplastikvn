@@ -28,10 +28,8 @@ def start_server(root_dir):
     return httpd
 
 def generate_pdf():
-    # The script is located in workspace/code/generate_pdf.py
-    # Root dir is the parent of code/
-    code_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.dirname(code_dir)
+    # The script is located in workspace root
+    root_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Start server
     server = start_server(root_dir)
@@ -51,7 +49,7 @@ def generate_pdf():
             page = browser.new_page()
             
             # Navigate to the HTML page via local server
-            url = f"http://localhost:{PORT}/code/index.html"
+            url = f"http://localhost:{PORT}/index.html"
             print(f"Navigating to {url}...")
             page.goto(url, wait_until="load")
             

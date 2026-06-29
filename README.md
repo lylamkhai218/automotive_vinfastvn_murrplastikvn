@@ -20,7 +20,7 @@ When industrial robots operate at high frequencies and wide angular ranges (spec
 - **Accident Survey Gallery**: High-resolution image grid displaying structural failures on existing Becker assemblies (cracks, tape patches, and missing markers).
 - **Interactive Lightbox**: Clean media modal for inspecting component pictures and actual installations.
 - **Dynamic Scroll-Spy Navigation**: Auto-highlighting navbar indicating the user's current reading section.
-- **Page-Budgeted PDF Compiler**: A Python automated compiler (`code/generate_pdf_report.py`) using Playwright to launch a headless browser, apply professional `@media print` layouts, and output a clean, 5-page PDF document.
+- **Page-Budgeted PDF Compiler**: A Python automated compiler (`generate_pdf_report.py`) using Playwright to launch a headless browser, apply professional `@media print` layouts, and output a clean, 5-page PDF document.
 
 ---
 
@@ -37,13 +37,13 @@ When industrial robots operate at high frequencies and wide angular ranges (spec
 ```
 automotive_vinfastvn_murrplastikvn/
 │
-├── code/
-│   ├── index.html            # Main web landing page (Dark theme)
-│   ├── style.css             # Layout, animations, and typography styles
-│   ├── app.js                # Three.js renderer and UI interaction logic
-│   ├── pdf_report.html       # Print-specific template for the PDF
-│   ├── pdf_report.css        # Professional A4 margins, headers/footers
-│   └── generate_pdf_report.py# Python script to compile the PDF report
+├── index.html            # Main web landing page (Dark theme)
+├── style.css             # Layout, animations, and typography styles
+├── app.js                # Three.js renderer and UI interaction logic
+├── pdf_report.html       # Print-specific template for the PDF
+├── pdf_report.css        # Professional A4 margins, headers/footers
+├── generate_pdf_report.py# Python script to compile the PDF report
+├── generate_pdf.py       # Legacy page PDF capture script
 │
 ├── Ảnh hiện trạng/           # Survey photos showing failures on-site
 ├── Ảnh giải pháp/            # Technical drawings, drawings, and simulation videos
@@ -63,13 +63,13 @@ To start the local web server and preview the landing page:
 ```bash
 python -m http.server 8000
 ```
-Then navigate to: `http://localhost:8000/code/index.html`
+Then navigate to: `http://localhost:8000/index.html`
 
 ### 2. Generate/Update the PDF Report
 To compile the PDF report from the source template:
 ```bash
 pip install playwright
 playwright install
-python code/generate_pdf_report.py
+python generate_pdf_report.py
 ```
 This will start a temporary server, load the layout, render the tables/visuals, and output a fresh copy of `Bao_cao_giai_phap_Vinfast_Murrplastik.pdf` in the root folder.
