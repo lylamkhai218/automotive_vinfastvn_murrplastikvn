@@ -19,3 +19,7 @@ env/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Exclude large local quote and order documents
+Order sample ABB 6700 & 7600 for Vinfast.xls
+Báo giá/
