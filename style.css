@@ -1014,6 +1014,28 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+/* Swipe note for mobile tables */
+.swipe-note {
+    display: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-top: 16px;
+    font-style: italic;
+    text-align: center;
+}
+
+.swipe-note i {
+    color: var(--accent-red);
+    margin-right: 6px;
+    display: inline-block;
+    animation: pulse-arrows 2s infinite ease-in-out;
+}
+
+@keyframes pulse-arrows {
+    0%, 100% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+}
+
 /* Accessory Image Galleries inside tables */
 .gallery-thumbs {
     display: flex;
@@ -1296,6 +1318,14 @@ h1, h2, h3, h4, h5, h6 {
         display: none; /* Mobile menu collapsed, or just use vertical layout for simplicity */
     }
     
+    .swipe-note {
+        display: block;
+    }
+    
+    .materials-table {
+        min-width: 650px;
+    }
+    
     .hero-title {
         font-size: 32px;
     }
@@ -1338,6 +1368,46 @@ h1, h2, h3, h4, h5, h6 {
     
     #lightbox-next {
         right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --header-height: 65px;
+    }
+    
+    .header-container {
+        padding: 0 12px;
+    }
+    
+    .logo-img {
+        height: 28px;
+    }
+    
+    .brand-logo {
+        gap: 6px;
+    }
+    
+    .company-name {
+        font-size: 12px;
+        letter-spacing: 0.02em;
+    }
+    
+    .distributor {
+        font-size: 7.5px;
+        letter-spacing: 0.02em;
+    }
+    
+    .header-actions .btn {
+        padding: 8px 12px;
+        font-size: 10px;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        border-radius: 6px;
+    }
+    
+    .header-actions .btn i {
+        font-size: 11px;
     }
 }
 
