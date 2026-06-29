@@ -49,8 +49,8 @@ function init3DViewer() {
     // Load STL Model
     const loader = new THREE.STLLoader();
     
-    // Relative path to STL from code/index.html
-    loader.load('../R-Tec_Liner_550mm.stl', 
+    // Relative path to STL from index.html in root
+    loader.load('./R-Tec_Liner_550mm.stl', 
         function (geometry) {
             // Material styling (Semi-metallic industrial steel look for better visibility)
             const material = new THREE.MeshStandardMaterial({
@@ -266,7 +266,7 @@ function showNextImage() {
 document.getElementById('download-pdf-btn')?.addEventListener('click', (e) => {
     e.preventDefault();
     const link = document.createElement('a');
-    link.href = '../Bao_cao_giai_phap_Vinfast_Murrplastik.pdf';
+    link.href = './Bao_cao_giai_phap_Vinfast_Murrplastik.pdf';
     link.download = 'Bao_cao_giai_phap_Vinfast_Murrplastik.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
