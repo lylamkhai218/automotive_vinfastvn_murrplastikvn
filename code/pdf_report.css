@@ -1,0 +1,479 @@
+/* pdf_report.css */
+@page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+}
+
+@page :first {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+    background-color: #ffffff;
+    line-height: 1.5;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #1a202c;
+    font-weight: 700;
+}
+
+.page {
+    position: relative;
+    width: 100%;
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+/* COVER PAGE STYLE */
+.cover-page {
+    height: 297mm; /* Full A4 height */
+    background-color: #0b0f17;
+    color: #ffffff;
+    padding: 35mm 25mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20pt;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.logo-subtitle {
+    font-size: 8pt;
+    letter-spacing: 0.05em;
+    color: #d51e29;
+    font-weight: 700;
+    margin-top: 3px;
+}
+
+.logo-divider {
+    width: 2px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo-client {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20pt;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.cover-content {
+    margin-top: 35mm;
+    margin-bottom: auto;
+}
+
+.report-title {
+    font-size: 24pt;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 25px;
+    letter-spacing: -0.01em;
+}
+
+.accent-bar {
+    width: 80px;
+    height: 6px;
+    background-color: #d51e29;
+    margin-bottom: 25px;
+    border-radius: 3px;
+}
+
+.report-subtitle {
+    font-size: 13pt;
+    color: #a0aec0;
+    font-weight: 400;
+    max-width: 650px;
+    line-height: 1.5;
+}
+
+.cover-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    row-gap: 10px;
+    font-size: 9.5pt;
+}
+
+.meta-label {
+    color: #718096;
+    font-weight: 600;
+}
+
+.meta-value {
+    color: #e2e8f0;
+}
+
+/* GENERAL PAGE FORMATTING */
+.section-title {
+    font-size: 15pt;
+    color: #d51e29;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.section-desc {
+    font-size: 9.5pt;
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* MINUTES BOX */
+.minutes-box {
+    background-color: #f8fafc;
+    border-left: 4px solid #d51e29;
+    padding: 15px 20px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 20px;
+    border-top: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.minutes-box h3 {
+    font-size: 11pt;
+    margin-bottom: 8px;
+    color: #1a202c;
+}
+
+.minutes-box p {
+    font-size: 9.5pt;
+    color: #4a5568;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.minutes-box ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.minutes-box ul li {
+    font-size: 9pt;
+    color: #4a5568;
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.4;
+}
+
+.minutes-box ul li::before {
+    content: "•";
+    color: #d51e29;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* SURVEY GALLERY */
+.survey-gallery h3 {
+    font-size: 11pt;
+    margin-bottom: 12px;
+    color: #1a202c;
+}
+
+.pdf-gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.pdf-gallery-item {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-gallery-item img {
+    width: 100%;
+    height: 42mm;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.pdf-gallery-item p {
+    font-size: 8pt;
+    color: #4a5568;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* TECHNICAL SOLUTION PAGE */
+.solution-intro {
+    margin-bottom: 15px;
+}
+
+.solution-intro h3 {
+    font-size: 11pt;
+    margin-bottom: 6px;
+}
+
+.solution-intro p {
+    font-size: 9.5pt;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+.solution-schematic {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.schematic-item {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    background-color: #ffffff;
+}
+
+.schematic-item img {
+    max-width: 100%;
+    height: 55mm;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.schematic-item p {
+    font-size: 8.5pt;
+    color: #718096;
+}
+
+.qualification-box h3 {
+    font-size: 11pt;
+    margin-bottom: 10px;
+    color: #1a202c;
+}
+
+/* TABLES STYLING */
+.pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    font-size: 8.5pt;
+}
+
+.pdf-table th {
+    background-color: #1a202c;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 7.5pt;
+    letter-spacing: 0.03em;
+    padding: 8px 10px;
+    text-align: left;
+    border: 1px solid #1a202c;
+}
+
+.pdf-table td {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    color: #2d3748;
+    vertical-align: middle;
+    line-height: 1.35;
+}
+
+.pdf-table tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-mono {
+    font-family: monospace;
+    font-size: 8pt;
+    color: #1a202c;
+    font-weight: 600;
+}
+
+.description-vn {
+    font-size: 7.5pt;
+    color: #718096;
+    margin-top: 2px;
+}
+
+.pdf-thumbs {
+    display: flex;
+    justify-content: center;
+}
+
+.pdf-thumbs img {
+    width: 50px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+}
+
+/* ACTION PLAN & CONTACTS */
+.action-plan-box {
+    margin-bottom: 20px;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    padding: 15px 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.action-plan-box h3 {
+    font-size: 11pt;
+    margin-bottom: 10px;
+    color: #1a202c;
+}
+
+.action-plan-box ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.action-plan-box ul li {
+    font-size: 9.5pt;
+    color: #4a5568;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.4;
+}
+
+.action-plan-box ul li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: bold;
+    font-size: 10pt;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.action-plan-box ul li strong {
+    color: #1a202c;
+}
+
+.contact-box {
+    background-color: rgba(213, 30, 41, 0.02);
+    border: 1px dashed rgba(213, 30, 41, 0.25);
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+}
+
+.contact-box h3 {
+    font-size: 11pt;
+    color: #d51e29;
+    margin-bottom: 6px;
+}
+
+.contact-box p {
+    font-size: 9.5pt;
+    color: #4a5568;
+    margin-bottom: 3px;
+}
+
+.contact-box a {
+    color: #d51e29;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* SIGNATURES */
+.signature-section {
+    margin-top: 20px;
+}
+
+.sig-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    text-align: center;
+    color: #1a202c;
+    letter-spacing: 0.05em;
+    margin-bottom: 25px;
+}
+
+.sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.sig-column {
+    text-align: center;
+}
+
+.sig-company {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 35px;
+}
+
+.sig-space {
+    height: 40px;
+}
+
+.sig-name {
+    font-size: 8pt;
+    color: #718096;
+    border-top: 1px solid #cbd5e1;
+    display: inline-block;
+    padding-top: 4px;
+    width: 85%;
+}
