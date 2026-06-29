@@ -24,7 +24,7 @@ HTML_CONTENT = """<!DOCTYPE html>
         <div class="logo-container">
             <div class="logo-box">
                 <span class="logo-title">MURRPLASTIK</span>
-                <span class="logo-subtitle">T&T VINA - ĐẠI DIỆN CHÍNH THỨC VÀ DUY NHẤT</span>
+                <span class="logo-subtitle">T&T VINA - ĐẠI DIỆN PHÂN PHỐI TẠI VIỆT NAM</span>
             </div>
             <div class="logo-divider"></div>
             <div class="logo-client">VINFAST</div>
