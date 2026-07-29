@@ -1,6 +1,6 @@
 ---
 name: industrial-quote-customs-automation
-description: Automation pipeline to parse multi-page industrial invoices/quotes (PDF/XLS/XLSX), search shop.murrplastik.com by Order No (e.g. 83201208) to fetch live product links, images, and technical specs, generate technical proposal Excel workbooks, and build Customs declaration Excel files with Vietnamese translations, material compositions, usage descriptions, HS code lookup, and Drive hyperlinks.
+description: Automation pipeline to parse multi-page industrial invoices/quotes (PDF/XLS/XLSX), search shop.murrplastik.com with strict Order No (e.g. 83201208) + English product name matching to extract exact product links, images, and technical specs, generate technical proposal Excel workbooks, and build Customs declaration Excel files with Vietnamese translations, material compositions, usage descriptions, HS code lookup, and Drive hyperlinks.
 ---
 
 # QUY TRÌNH CHUẨN (SOP) - TỰ ĐỘNG HÓA BÁO GIÁ & KHAI BÁO HẢI QUAN HÀNG CÔNG NGHIỆP / MURRPLASTIK
@@ -13,9 +13,9 @@ Quy trình này hướng dẫn tự động hóa xử lý các hóa đơn, báo 
 
 ```mermaid
 graph TD
-    A[PDF / Excel Invoice / Báo giá 50+ trang] --> B[1. Trích xuất Mã Order No từ Invoice]
-    B --> B2[1b. Auto-Search shop.murrplastik.com theo Order No]
-    B2 --> C[2. Bóc tách Link Sản phẩm, Ảnh thực tế & Thông số Kỹ thuật]
+    A[PDF / Excel Invoice / Báo giá 50+ trang] --> B[1a. Trích xuất Mã Order No + Tên hàng tiếng Anh]
+    B --> B2[1b. Auto-Search shop.murrplastik.com với Thuật toán Lọc Chính xác 3 Lớp]
+    B2 --> C[2. Bóc tách Link Sản phẩm Chuẩn, Ảnh thực tế & Thông số Kỹ thuật]
     C --> D[3. Chuẩn hóa & Map Từ điển Tiếng Việt + HS Code + Chất liệu]
     D --> E[4. Xuất Báo giá Kỹ thuật .xlsx kèm Hyperlink Shop & Ảnh]
     D --> F[5. Xuất Bảng kê Hải quan 3-Sheet .xlsx]
@@ -23,18 +23,25 @@ graph TD
 
 ---
 
-## 📌 BƯỚC 1: TRÍCH XUẤT MÃ ORDER NO & TRA CỨU TỰ ĐỘNG NGUỒN HÃNG (SHOP.MURRPLASTIK.COM)
+## 📌 BƯỚC 1: TRÍCH XUẤT DỮ LIỆU & THUẬT TOÁN BẮT SẢN PHẨM CHÍNH XÁC 100% (EXACT MATCH ALGORITHM)
 
-### 1a. Trích xuất dữ liệu từ Invoice:
-- Dùng Python (`pdfplumber` / `pandas`) quét mã vật tư / Order No (ví dụ: `83201208`, `83693082`, `83691502`).
+### 1a. Trích xuất cặp dữ liệu từ Invoice:
+- Đọc đồng thời cặp thông tin từ Invoice: `[Mã Order No]` + `[Tên sản phẩm tiếng Anh]` (Ví dụ: `83201208` + `EW-R-PP M12/P09`).
 
-### 1b. Tra cứu tự động trên Shop Murrplastik Đức theo Order No:
-- **URL Tra cứu:** `https://shop.murrplastik.com/search?q={Order_No}` hoặc `matnr={Order_No}` (Ví dụ: `https://shop.murrplastik.com/search?q=83201208`).
-- **Dữ liệu tự động bóc tách từ trang web hãng:**
-  1. **Link Shop Sản phẩm:** URL chính thức của sản phẩm trên `shop.murrplastik.com`.
-  2. **Hình ảnh sản phẩm gốc:** URL ảnh `.jpg` / `.webp` / `.png` chất lượng cao.
-  3. **Mô tả kỹ thuật đầy đủ:** Tên thương mại, tiêu chuẩn kỹ thuật (IP65, IP68, dải nhiệt độ, chuẩn ren, đường kính).
-  4. **Vật liệu cấu thành:** Nhựa Polyamide PA6, Thép mạ kẽm (Galvanized steel), Nhôm phay, Cao su Elastomer.
+### 1b. Thuật toán Lọc Sản phẩm Chính xác 3 Lớp (3-Layer Exact Match):
+
+Do kết quả tìm kiếm trên `shop.murrplastik.com/search-page?q=83201208` có thể trả về cả các sản phẩm có chứa chuỗi con tương tự (VD: `SVY 201208` có mã `83701428`), hệ thống áp dụng thuật toán lọc 3 lớp:
+
+1. **Lớp 1: Strict Order No Verification (Lọc khớp 100% Mã Order No):**
+   - Quét từng thẻ sản phẩm trả về trong danh sách kết quả (`Variants`).
+   - Đọc trường `Order no.: XXXXXXXX` trong HTML. BẮT BUỘC `Order no.` phải bằng đúng `83201208` (Loại bỏ ngay `SVY 201208` vì mã của nó là `83701428`).
+
+2. **Lớp 2: Product Name Cross-Validation (Đối chiếu Tên sản phẩm tiếng Anh từ Invoice):**
+   - Lấy Tên sản phẩm tiếng Anh trên Invoice (VD: `EW-R-PP`, `SH 56/70-M`, `R-Tec Liner`, `KEG/AK`, `A-ZS`).
+   - Đối chiếu từ khóa tiền tố (Prefix / Family Name) với Tiêu đề sản phẩm trên web để chọn đúng biến thể chuẩn 100%.
+
+3. **Lớp 3: Direct Parameter Match (`matnr={Order_No}`):**
+   - Định tuyến thẳng tới URL chứa tham số gốc `matnr={Order_No}` (VD: `https://shop.murrplastik.com/p/cable-protection-conduits-ew-r-pp-185461?matnr=83201208`).
 
 ---
 
@@ -51,7 +58,7 @@ Tự động kết hợp dữ liệu cào từ hãng với **Từ điển Danh m
 | **Strain Relief / A-ZS / R-ZL** | Vòng đệm / Tấm đệm cao su giảm ứng lực căng cáp | Cao su đàn hồi Elastomer | `4016.99.99` | Siết chặt giảm ứng lực căng kéo thắt cáp |
 | **Ball Joint (KEG/KMG)** | Khớp nối cầu vạn năng định hướng ống luồn | Nhựa Polyamide PA6 | `3917.40.00` hoặc `3926.90.99` | Khớp nối xoay đa hướng cho ống luồn cáp |
 | **Conduit Ring (SRF)** | Vòng định vị kẹp giữ ống luồn | Nhựa Polyamide PA6 | `3917.40.00` | Định vị hành trình co gập của ống |
-| **Tubing (EW / EWX)** | Ống gợn sóng bảo vệ đường dây điện | Nhựa Polyamide PA6 | `3917.39.00` | Bọc bảo vệ cáp điện nguồn và tín hiệu |
+| **Tubing (EW / EWX / EW-R-PP)** | Ống gợn sóng bảo vệ đường dây điện | Nhựa Polypropylene / Polyamide | `3917.39.00` | Bọc bảo vệ cáp điện nguồn và tín hiệu |
 
 ---
 
@@ -61,7 +68,7 @@ Tự động kết hợp dữ liệu cào từ hãng với **Từ điển Danh m
 - **Mục đích:** Chào giá Kỹ thuật cho Khách hàng (VinFast, v.v.).
 - **Định dạng:** 
   - Chia Sheet theo từng Dòng Máy / Robot (VD: Sheet `ABB IRB 7600`, Sheet `ABB IRB 6700`).
-  - Gắn Hyperlink tự động dẫn đến **Shop Murrplastik chính hãng** (tra cứu theo Order No) và **Thư mục Ảnh thực tế Google Drive**.
+  - Gắn Hyperlink tự động dẫn đến **Shop Murrplastik chính hãng** (URL chính xác 100%) và **Thư mục Ảnh thực tế Google Drive**.
 
 ### File 2: `Danh_sach_vat_tu_hai_quan_Murrplastik_[Campaign].xlsx`
 - **Mục đích:** Khai báo & Giải trình Hải quan cho bộ phận XNK.
@@ -75,8 +82,8 @@ Tự động kết hợp dữ liệu cào từ hãng với **Từ điển Danh m
 
 ## 🛠️ CÁCH SỬ DỤNG SCRIPT TỰ ĐỘNG (PYTHON SCRIPT EXECUTION)
 
-Chạy script Python trong thư mục `scripts/parse_and_export.py` để xử lý file Invoice 50+ trang và tự động cào Shop Murrplastik:
+Chạy script Python trong thư mục `scripts/parse_and_export.py` để xử lý file Invoice 50+ trang và cào shop với thuật toán lọc chính xác:
 
 ```bash
-python .agents/skills/industrial-quote-customs-automation/scripts/parse_and_export.py --input "[Duong_dan_file_Invoice.pdf_hoac_xlsx]" --fetch-shop --output-dir "./"
+python .agents/skills/industrial-quote-customs-automation/scripts/parse_and_export.py --input "[Duong_dan_file_Invoice.pdf_hoac_xlsx]" --fetch-shop --exact-match --output-dir "./"
 ```

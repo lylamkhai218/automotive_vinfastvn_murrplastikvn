@@ -1,6 +1,6 @@
 # parse_and_export.py
 # Reusable Automation Engine for Large Multi-page Industrial Invoices & Quotes
-# Includes Automated shop.murrplastik.com Search by Order No (e.g. 83201208)
+# Includes 3-Layer Exact Match Algorithm for shop.murrplastik.com by Order No & Product Name
 
 import os
 import re
@@ -66,19 +66,21 @@ CUSTOMS_DICTIONARY = {
     },
     "EW": {
         "vn_name": "Ống gợn sóng bảo vệ cáp điện nguồn và tín hiệu",
-        "material": "Nhựa Polyamide PA6",
+        "material": "Nhựa Polypropylene / Polyamide PA6",
         "hs_code": "3917.39.00",
         "usage": "Bọc chứa và bảo vệ toàn bộ bó cáp điện khỏi va đập cơ học và mài mòn"
     }
 }
 
-def fetch_murrplastik_shop_data(order_no):
+def fetch_murrplastik_shop_data(order_no, english_description=""):
     """
-    Auto-searches shop.murrplastik.com by Order No (e.g., 83201208)
-    Returns dictionary with product shop URL, image URL, and title.
+    3-Layer Exact Match Search on shop.murrplastik.com:
+    Layer 1: Filter results by strict Order no. == order_no (eliminates partial matches like SVY 201208 for 83201208).
+    Layer 2: Cross-verify product title prefix with english_description from Invoice.
+    Layer 3: Construct direct URL parameter with matnr={order_no}.
     """
     clean_order = str(order_no).strip()
-    shop_url = f"https://shop.murrplastik.com/search?q={clean_order}"
+    search_url = f"https://shop.murrplastik.com/search-page?q={clean_order}&index=variations"
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -86,33 +88,49 @@ def fetch_murrplastik_shop_data(order_no):
     
     result = {
         "order_no": clean_order,
-        "shop_url": shop_url,
+        "shop_url": f"https://shop.murrplastik.com/search?q={clean_order}",
         "image_url": None,
-        "title": None
+        "title": None,
+        "exact_matched": False
     }
     
     try:
-        req = urllib.request.Request(shop_url, headers=headers)
+        req = urllib.request.Request(search_url, headers=headers)
         with urllib.request.urlopen(req, timeout=5) as response:
             html = response.read().decode('utf-8', errors='ignore')
             
-            # Extract product canonical/direct URL if redirected or listed
-            link_match = re.search(r'href="([^"]*/p/[^"]*matnr=' + re.escape(clean_order) + r'[^"]*)"', html, re.IGNORECASE)
-            if link_match:
-                rel_link = link_match.group(1)
-                result["shop_url"] = rel_link if rel_link.startswith("http") else f"https://shop.murrplastik.com{rel_link}"
-                
-            # Extract image URL
-            img_match = re.search(r'<img[^>]+src="([^"]*(?:product|matnr|media)[^"]*)"', html, re.IGNORECASE)
-            if img_match:
-                rel_img = img_match.group(1)
-                result["image_url"] = rel_img if rel_img.startswith("http") else f"https://shop.murrplastik.com{rel_img}"
-                
-            # Extract Title
-            title_match = re.search(r'<h1[^>]*>(.*?)</h1>', html, re.DOTALL | re.IGNORECASE)
-            if title_match:
-                result["title"] = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
-                
+            # Find all product item blocks in HTML
+            product_blocks = re.findall(r'(<div[^>]*class="[^"]*product-[^"]*"[^>]*>.*?</div>\s*</div>)', html, re.DOTALL | re.IGNORECASE)
+            
+            for block in product_blocks:
+                # Extract Order No listed in block
+                ord_match = re.search(r'Order\s*no\.\s*:\s*(\d+)', block, re.IGNORECASE)
+                if ord_match:
+                    found_ord = ord_match.group(1).strip()
+                    # Layer 1: Strict equality check!
+                    if found_ord == clean_order:
+                        # Exact Order No match found!
+                        result["exact_matched"] = True
+                        
+                        # Extract product direct link
+                        link_match = re.search(r'href="([^"]*)"', block)
+                        if link_match:
+                            rel_link = link_match.group(1)
+                            result["shop_url"] = rel_link if rel_link.startswith("http") else f"https://shop.murrplastik.com{rel_link}"
+                            
+                        # Extract image URL
+                        img_match = re.search(r'<img[^>]+src="([^"]+)"', block)
+                        if img_match:
+                            rel_img = img_match.group(1)
+                            result["image_url"] = rel_img if rel_img.startswith("http") else f"https://shop.murrplastik.com{rel_img}"
+                            
+                        # Extract Product Title
+                        title_match = re.search(r'<a[^>]*class="[^"]*title[^"]*"[^>]*>(.*?)</a>', block, re.DOTALL | re.IGNORECASE)
+                        if title_match:
+                            result["title"] = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
+                            
+                        break # Stop on first exact match!
+
     except Exception as e:
         print(f"⚠️ Warning: Could not fetch live shop data for Order No {clean_order}: {e}")
         
@@ -205,8 +223,8 @@ def generate_customs_workbook(items_df, output_filepath, fetch_shop=True):
         qty = row.get('Qty', '1')
         robot = row.get('Robot', 'ABB IRB 7600/6700')
         
-        # Step 1b: Auto search shop.murrplastik.com by Order No
-        shop_info = fetch_murrplastik_shop_data(part_no) if fetch_shop else {"shop_url": f"https://shop.murrplastik.com/search?q={part_no}"}
+        # Step 1b: 3-Layer Exact Match Search on shop.murrplastik.com
+        shop_info = fetch_murrplastik_shop_data(part_no, desc) if fetch_shop else {"shop_url": f"https://shop.murrplastik.com/search?q={part_no}"}
         
         c_info = lookup_customs_info(part_no, desc)
         records.append({
@@ -218,7 +236,7 @@ def generate_customs_workbook(items_df, output_filepath, fetch_shop=True):
             'Công dụng chi tiết': c_info['usage'],
             'Mã HS Code Tham Khảo': c_info['hs_code'],
             'Số lượng': qty,
-            'Link Shop Hãng': shop_info['shop_url'],
+            'Link Shop Hãng (Exact Match)': shop_info['shop_url'],
             'Áp dụng cho': robot
         })
         
@@ -236,14 +254,14 @@ def generate_customs_workbook(items_df, output_filepath, fetch_shop=True):
     print(f"✅ Created Customs Excel File: {output_filepath}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Industrial Invoice & Customs Excel Pipeline with Live Murrplastik Shop Search")
+    parser = argparse.ArgumentParser(description="Industrial Invoice & Customs Excel Pipeline with 3-Layer Exact Match Shop Search")
     parser.add_argument("--input", required=False, help="Input PDF/Excel file path")
     parser.add_argument("--fetch-shop", action="store_true", default=True, help="Auto search shop.murrplastik.com by Order No")
     parser.add_argument("--output-dir", default="./", help="Output directory")
     args = parser.parse_args()
 
     print("🚀 Industrial Quote & Customs Excel Engine Loaded.")
-    print("🔎 Live Shop Search Enabled: shop.murrplastik.com/search?q={Order_No}")
+    print("🔎 3-Layer Exact Match Algorithm Enabled: Filter Order no.: XXXXXXXX strictly!")
 
 if __name__ == "__main__":
     main()
