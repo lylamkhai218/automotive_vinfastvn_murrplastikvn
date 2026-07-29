@@ -771,17 +771,23 @@ def start_server(root_dir):
 def main():
     root_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # 1. Write pdf_report.html
+    # 1. Check pdf_report.html
     html_path = os.path.join(root_dir, "pdf_report.html")
-    with open(html_path, "w", encoding="utf-8") as f:
-        f.write(HTML_CONTENT)
-    print(f"Written {html_path}")
+    if not os.path.exists(html_path):
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(HTML_CONTENT)
+        print(f"Written {html_path}")
+    else:
+        print(f"Using existing {html_path}")
         
-    # 2. Write pdf_report.css
+    # 2. Check pdf_report.css
     css_path = os.path.join(root_dir, "pdf_report.css")
-    with open(css_path, "w", encoding="utf-8") as f:
-        f.write(CSS_CONTENT)
-    print(f"Written {css_path}")
+    if not os.path.exists(css_path):
+        with open(css_path, "w", encoding="utf-8") as f:
+            f.write(CSS_CONTENT)
+        print(f"Written {css_path}")
+    else:
+        print(f"Using existing {css_path}")
         
     # 3. Start server
     server = start_server(root_dir)

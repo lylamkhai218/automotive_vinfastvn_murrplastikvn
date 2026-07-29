@@ -181,24 +181,54 @@ let currentGalleryImages = [];
 let currentImageIndex = 0;
 
 function setupLightbox() {
-    // Collect all thumbnails
+    // Collect all table thumbnails
     const thumbnails = document.querySelectorAll('.gallery-thumb');
     
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', (e) => {
             e.stopPropagation();
             
-            // Find parent cell to identify the specific gallery of this item
             const parentCell = thumb.closest('td');
-            const itemTitle = thumb.closest('tr').querySelector('td:nth-child(3) strong').innerText;
-            const itemDescVn = thumb.closest('tr').querySelector('.description-vn').innerText;
+            const itemTitle = thumb.closest('tr')?.querySelector('td:nth-child(3) strong')?.innerText || "Vật tư Murrplastik";
+            const itemDescVn = thumb.closest('tr')?.querySelector('.description-vn')?.innerText || "";
             
-            // Gather all thumbnails in this cell
             const cellThumbs = Array.from(parentCell.querySelectorAll('.gallery-thumb'));
             currentGalleryImages = cellThumbs.map(img => img.src);
             currentImageIndex = cellThumbs.indexOf(thumb);
             
             openLightbox(currentGalleryImages[currentImageIndex], `${itemTitle} <br><span style="font-size:12px; color:var(--text-secondary); font-weight:normal">${itemDescVn}</span>`);
+        });
+    });
+
+    // Collect construction gallery items
+    const constructionItems = document.querySelectorAll('.construction-gallery-item');
+    constructionItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const img = item.querySelector('img');
+            const captionText = item.querySelector('.construction-gallery-caption')?.innerHTML || img.alt;
+            
+            const allConstructionImgs = Array.from(document.querySelectorAll('.construction-gallery-item img'));
+            currentGalleryImages = allConstructionImgs.map(i => i.src);
+            currentImageIndex = allConstructionImgs.indexOf(img);
+            
+            openLightbox(img.src, captionText);
+        });
+    });
+
+    // Collect status survey gallery items
+    const statusItems = document.querySelectorAll('.gallery-item');
+    statusItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const img = item.querySelector('img');
+            const captionText = item.querySelector('.item-desc')?.innerText || img.alt;
+            
+            const allStatusImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            currentGalleryImages = allStatusImgs.map(i => i.src);
+            currentImageIndex = allStatusImgs.indexOf(img);
+            
+            openLightbox(img.src, captionText);
         });
     });
 
